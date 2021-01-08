@@ -1,6 +1,7 @@
 require 'sinatra/base'
 class RockPaperScissors < Sinatra::Base
   enable :sessions
+  set :session_secret, "secret"
 
   get '/test' do
     'test page'
@@ -11,13 +12,13 @@ class RockPaperScissors < Sinatra::Base
   end
 
   post "/name" do
-    session["name"] = params["name"]
+    session[:name] = params["name"]
     redirect "/game"
   end
 
   get "/game" do
-    @name = session["name"]
-    erb :game
+    p session[:name]
+    erb :game, :locals => { :name => session[:name] }
   end
 
   run! if app_file == $0
