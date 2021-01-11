@@ -1,8 +1,8 @@
-<h1>Welcome, <%= @game.player_name %></h1>
+<h1>Welcome, <%= @game.player[:name] %></h1>
 
-<% if @game.player_move %>
+<% if @game.player[:move] %>
 
-    <p> <%= @game.player_name %>'s move :  <%= @game.player_move %><br>
+    <p> <%= @game.player[:name] %>'s move :  <%= @game.player[:move] %><br>
     Computer's move :  <%= @game.comp_move %></p>
    <h1><%= @game.result %><%= " wins" unless @game.result == "Draw" %>!</h1>
     
