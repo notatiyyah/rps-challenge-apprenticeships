@@ -2,10 +2,15 @@
 
 <% if @game.player[:move] %>
 
-    <p> <%= @game.player[:name] %>'s move :  <%= @game.player[:move] %><br>
+    <p> <%= @game.player[:name]%>'s move :  <%= @game.player[:move] %><br>
     Computer's move :  <%= @game.comp_move %></p>
-   <h1><%= @game.result %><%= " wins" unless @game.result == "Draw" %>!</h1>
+    <h1><%= @game.result %><%= " wins" unless @game.result == "Draw" %>!</h1>
     
+    <form action="/name" method="post">
+        <input type="hidden" name="name" value= <%= @game.player[:name] %>>
+        <input type="submit" name="restart" value="Play Again">
+    </form>
+
 <% else %>
 
     <form action="/move" method="post">

@@ -41,4 +41,11 @@ feature "run game" do
         end
 
     end
+
+    scenario "restart" do
+        click_on "paper"
+        click_on "restart"
+        expect(page).to have_content "Welcome, Player_1"
+        expect(page).not_to have_content "Player_1's move : Paper"
+    end
 end
