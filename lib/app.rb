@@ -17,7 +17,6 @@ class RockPaperScissors < Sinatra::Base
   end
 
   get "/game" do
-    p session[:name]
     erb :game, :locals => { :name => session[:name] }
   end
 
