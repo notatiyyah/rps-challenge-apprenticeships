@@ -1,4 +1,6 @@
 require 'sinatra/base'
+require './lib/calculate_game.rb'
+
 class RockPaperScissors < Sinatra::Base
   enable :sessions
   set :session_secret, "secret"

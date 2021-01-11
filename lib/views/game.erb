@@ -1,9 +1,19 @@
 <h1>Welcome, <%= @name %></h1>
 
 <% if @game %>
-    <p> <%= @name %>'s move :  <%= @game.player_move.capitalize %></p>
+
+    <p> <%= @name %>'s move :  <%= @game.player_move.capitalize %><br>
+    Computer's move :  <%= @game.comp_move.capitalize %></p>
+
+    <% winner  = (@game.result == "Player" ? @name : @game.result) %>
+    <h1><%= winner %><%= " wins" unless winner == "Draw" %>!</h1>
+    
 <% else %>
+
     <form action="/move" method="post">
         <input type="submit" name="rock" value="Rock">
+        <input type="submit" name="paper" value="Paper">
+        <input type="submit" name="scissors" value="Scissors">
     </form>
+
 <% end %>
