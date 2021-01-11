@@ -14,18 +14,17 @@ class RockPaperScissors < Sinatra::Base
   end
 
   post "/name" do
-    session[:name] = params["name"]
+    session[:game] = CalculateGame.new(params["name"])
     redirect "/game"
   end
 
   get "/game" do
-    @name = session[:name]
     @game = session[:game]
     erb :game
   end
 
   post "/move" do
-    session[:game] = CalculateGame.new(params.keys[0])
+    session[:game].make_move(params.keys[0])
     redirect "/game"
   end
 

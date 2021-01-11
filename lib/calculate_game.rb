@@ -1,27 +1,35 @@
 class CalculateGame
     
-    attr_reader :player_move, :result, :comp_move
+    attr_reader :player_move, :result, :comp_move, :player_name
     
-    def initialize(move)
-        @player_move = move.downcase
+    def initialize(player_name)
+        @player_name = player_name
+    end
+
+    def make_move(move, override_random=nil)
+        @player_move = move.capitalize
+        take_turn unless override_random
+    end
+    
+    def take_turn
         randomise_comp_move
         calculate_win
     end
-    
+
     private
-    
+
     def randomise_comp_move
-        @comp_move = ["rock", "paper", "scissors"].sample
+        @comp_move = ["Rock", "Paper", "Scissors"].sample
     end
 
     def calculate_win_condition
         case @player_move
-        when "rock"
-            return "paper"
-          when "paper"
-            return "scissors"
-          when "scissors"
-            return "rock"
+        when "Rock"
+            return "Paper"
+          when "Paper"
+            return "Scissors"
+          when "Scissors"
+            return "Rock"
         end
     end
 
@@ -29,7 +37,7 @@ class CalculateGame
         if @player_move == @comp_move
             @result = "Draw"
         else
-            @result = (@comp_move == calculate_win_condition ? "Computer" : "Player")
+            @result = (@comp_move == calculate_win_condition ? "Computer" : @player_name )
         end
     end
 end

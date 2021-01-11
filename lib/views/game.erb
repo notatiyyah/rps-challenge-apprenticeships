@@ -1,12 +1,10 @@
-<h1>Welcome, <%= @name %></h1>
+<h1>Welcome, <%= @game.player_name %></h1>
 
-<% if @game %>
+<% if @game.player_move %>
 
-    <p> <%= @name %>'s move :  <%= @game.player_move.capitalize %><br>
-    Computer's move :  <%= @game.comp_move.capitalize %></p>
-
-    <% winner  = (@game.result == "Player" ? @name : @game.result) %>
-    <h1><%= winner %><%= " wins" unless winner == "Draw" %>!</h1>
+    <p> <%= @game.player_name %>'s move :  <%= @game.player_move %><br>
+    Computer's move :  <%= @game.comp_move %></p>
+   <h1><%= @game.result %><%= " wins" unless @game.result == "Draw" %>!</h1>
     
 <% else %>
 
