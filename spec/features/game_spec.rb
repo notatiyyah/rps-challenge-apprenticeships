@@ -1,8 +1,16 @@
+require_relative "web_helpers.rb"
+
 feature "start game" do
     scenario "user can input name" do
-        visit "/"
-        fill_in 'name', with: 'Player_1'
-        click_on "Submit"
+        sign_in
         expect(page).to have_content "Welcome, Player_1"
+    end
+end
+
+feature "run game" do
+    scenario "user can input move" do
+        sign_in
+        click_on "rock"
+        expect(page).to have_content "Player_1's move : Rock"
     end
 end

@@ -17,7 +17,14 @@ class RockPaperScissors < Sinatra::Base
   end
 
   get "/game" do
-    erb :game, :locals => { :name => session[:name] }
+    @name = session[:name]
+    @game = session[:game]
+    erb :game
+  end
+
+  post "/move" do
+    session[:game] = CalculateGame.new(params.keys[0])
+    redirect "/game"
   end
 
   run! if app_file == $0
